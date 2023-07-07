@@ -8,7 +8,7 @@ using TMPro;
 
 public class ForceInputField : MonoBehaviour
 {
-    //public static ForceInputField Instance;
+    public static ForceInputField Instance;
     public TMP_InputField mainInputField;
     //public String imputedNumber;
     

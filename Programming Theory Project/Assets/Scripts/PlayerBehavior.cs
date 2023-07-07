@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using TMPro;
 //using Math;
 
 public class PlayerBehavior : MonoBehaviour
@@ -14,9 +16,10 @@ public class PlayerBehavior : MonoBehaviour
     public float m_selection = 1;
     public Vector3 spawnPosition;
     public GameObject ForceInputField;
-    private String imputedNumber;
+    public String imputedNumber;
+    public int convertedNumber;
     public bool forceSelectMode = false;
-    public int force;
+    public static int force;
     public float selection {
         get{
             return m_selection;
@@ -34,13 +37,21 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
     [SerializeField] int RoundedAnswer;
+
+    public void InputFieldUpdated(){
+        imputedNumber = ForceInputField.GetComponent<TMP_InputField>().text;
+        Debug.Log(imputedNumber);
+        //force = Int32.Parse(imputedNumber);
+        force = (Convert.ToInt32(imputedNumber));
+    }
     // Start is called before the first frame update
     void Start()
     {
         ForceInputField = GameObject.Find("ForceInputField");
-        //imputedNumber = ForceInputField.GetComponent<ForceInputField>();
+        imputedNumber = ForceInputField.GetComponent<TMP_InputField>().text;
+        Debug.Log(imputedNumber);
         //force = Int32.Parse(imputedNumber);
-    
+        //force = Int32.Parse("-189");
 
     }
 

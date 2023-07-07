@@ -348,6 +348,7 @@
 "Assets/Scripts/ForceInputField.cs"
 "Assets/Scripts/HighscoreTracker.cs"
 "Assets/Scripts/PlayerBehavior.cs"
+"Assets/Scripts/ProjectileBehavior.cs"
 "Assets/Scripts/Trampoline.cs"
 "Assets/Scripts/UltraTrampoline.cs"
 -langversion:9.0

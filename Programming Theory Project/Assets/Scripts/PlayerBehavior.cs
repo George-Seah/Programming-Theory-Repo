@@ -19,7 +19,7 @@ public class PlayerBehavior : MonoBehaviour
     public String imputedNumber;
     public int convertedNumber;
     public bool forceSelectMode = false;
-    public static int force;
+    public int force;
     public float selection {
         get{
             return m_selection;
@@ -44,10 +44,25 @@ public class PlayerBehavior : MonoBehaviour
         //force = Int32.Parse(imputedNumber);
         force = (Convert.ToInt32(imputedNumber));
     }
+    public void ActivateForceSelect(){
+            Debug.Log("SPACE is pressed");
+            Debug.Log($"Selection: {selection}, m_selection: ${m_selection}");
+            RoundedAnswer = (int)Math.Floor(selection);
+            //throws[RoundedAnswer].transform.position = transform.position + new Vector3(0, 0, 1);
+            spawnPosition = transform.position + new Vector3(0, 0, 1);
+            forceSelectMode = true;
+            //Instantiate(throws[RoundedAnswer], spawnPosition, throws[RoundedAnswer].transform.rotation);
+    }
+    public void DeactivateForceSelect(){
+        forceSelectMode = false;
+    }
+    public void Launch(){
+        Instantiate(throws[RoundedAnswer], spawnPosition, throws[RoundedAnswer].transform.rotation);
+    }
     // Start is called before the first frame update
     void Start()
     {
-        ForceInputField = GameObject.Find("ForceInputField");
+        //ForceInputField = GameObject.Find("ForceInputField");
         imputedNumber = ForceInputField.GetComponent<TMP_InputField>().text;
         Debug.Log(imputedNumber);
         //force = Int32.Parse(imputedNumber);
@@ -66,14 +81,8 @@ public class PlayerBehavior : MonoBehaviour
         */
         selection += Time.deltaTime * horizontalInput;
 
-        if(Input.GetKeyDown(KeyCode.Space)){
-            Debug.Log("SPACE is pressed");
-            Debug.Log($"Selection: {selection}, m_selection: ${m_selection}");
-            RoundedAnswer = (int)Math.Floor(selection);
-            //throws[RoundedAnswer].transform.position = transform.position + new Vector3(0, 0, 1);
-            spawnPosition = transform.position + new Vector3(0, 0, 1);
-            forceSelectMode = true;
-            //Instantiate(throws[RoundedAnswer], spawnPosition, throws[RoundedAnswer].transform.rotation);
+        if(Input.GetKeyDown(KeyCode.Space) && !forceSelectMode){
+            ActivateForceSelect();
         }
         if(Input.GetKeyUp(KeyCode.Space)){
             Math.Ceiling(selection);
@@ -83,6 +92,9 @@ public class PlayerBehavior : MonoBehaviour
         }
         if(forceSelectMode){
             ForceInputField.SetActive(true);
+        }
+        else{
+            ForceInputField.SetActive(false);        
         }
         /*
 

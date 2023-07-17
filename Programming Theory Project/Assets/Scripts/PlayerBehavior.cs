@@ -13,7 +13,7 @@ public class PlayerBehavior : MonoBehaviour
     //public int selection;
     public float horizontalInput;
     //[SerializeField] private int m_selection = 1;
-    public float m_selection = 1;
+    public float m_selection = 0;
     public Vector3 spawnPosition;
     public GameObject ForceInputField;
     public String imputedNumber;
@@ -37,6 +37,7 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
     [SerializeField] int RoundedAnswer;
+    public GameObject MainCamera;
 
     public void InputFieldUpdated(){
         imputedNumber = ForceInputField.GetComponent<TMP_InputField>().text;
@@ -57,6 +58,9 @@ public class PlayerBehavior : MonoBehaviour
         forceSelectMode = false;
     }
     public void Launch(){
+        forceSelectMode = false;
+        //MainCamera.SetActive(false);
+        MainCamera.GetComponent<ProjectileFollower>().enabled = true;
         Instantiate(throws[RoundedAnswer], spawnPosition, throws[RoundedAnswer].transform.rotation);
     }
     // Start is called before the first frame update
@@ -65,6 +69,7 @@ public class PlayerBehavior : MonoBehaviour
         //ForceInputField = GameObject.Find("ForceInputField");
         imputedNumber = ForceInputField.GetComponent<TMP_InputField>().text;
         Debug.Log(imputedNumber);
+        MainCamera.GetComponent<ProjectileFollower>().enabled = false;
         //force = Int32.Parse(imputedNumber);
         //force = Int32.Parse("-189");
 
@@ -85,7 +90,7 @@ public class PlayerBehavior : MonoBehaviour
             ActivateForceSelect();
         }
         if(Input.GetKeyUp(KeyCode.Space)){
-            Math.Ceiling(selection);
+            //Math.Ceiling(selection);
             Debug.Log("SPACE is released");
             Debug.Log($"Selection: {selection}, m_selection: ${m_selection}");
 

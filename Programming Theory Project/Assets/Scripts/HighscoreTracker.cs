@@ -7,14 +7,19 @@ using System.IO;
 
 public class HighscoreTracker : MonoBehaviour
 {
-    public static HighscoreTracker Instance;
+    //public static HighscoreTracker Instance;
 
     public String PlayerName;
-    public int Score;
-    
-    public String HighscoreName;
-    public int Highscore;
+    public float Score;
+    public GameObject Projectile;
+    public int ProjectileForce;
 
+    public String HighscoreName;
+    public float Highscore;
+    public GameObject HighscoreProjectile;
+    public int HighscoreProjectileForce;
+
+    //private float newScore;/////
 
     private void Awake(){
         if(Instance != null){
@@ -23,7 +28,7 @@ public class HighscoreTracker : MonoBehaviour
         }
 
         
-        Instance = this;
+        //Instance = this;
         DontDestroyOnLoad(gameObject);
         LoadName();
     }
@@ -31,17 +36,22 @@ public class HighscoreTracker : MonoBehaviour
     [System.Serializable]
     class SaveData{
         public String HighscoreName;
-        public int Highscore;
+        public float Highscore;
+        public GameObject HighscoreProjectile;
+        public int HighscoreProjectileForce;   
     }
 
-    public void SaveName(){
+    public void SaveName(float newScore, int force){
         SaveData data = new SaveData();
         data.HighscoreName = PlayerName;
-        data.Highscore = Score;
+        data.Highscore = newScore;/////
+        data.HighscoreProjectile = GameObject.FindWithTag("Projectile");/////
+        data.HighscoreProjectileForce = force;
+
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-        //Debug.Log("Saved highscore with this name: " + HighscoreName + ", and this highscore: " + Highscore);
+        Debug.Log("Saved highscore with this name: " + HighscoreName + ", and this highscore: " + Highscore);
     }
 
     public void LoadName(){
@@ -52,7 +62,23 @@ public class HighscoreTracker : MonoBehaviour
 
             HighscoreName = data.HighscoreName;
             Highscore = data.Highscore;
+            HighscoreProjectile = data.HighscoreProjectile;
+            HighscoreProjectileForce = data.HighscoreProjectileForce;
         }
         //Debug.Log("Loaded with this name selected: " + HighscoreName + ", and this highscore: " + Highscore);
     }
+
+    public void ResetHighscore(){
+        SaveData data = new SaveData();
+        data.HighscoreName = " ";
+        data.Highscore = 0;/////
+        data.HighscoreProjectile = null;/////
+        data.HighscoreProjectileForce = 0;
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        Debug.Log("Saved highscore with this name: " + HighscoreName + ", and this highscore: " + Highscore);
+    }
+    public static HighscoreTracker Instance { get; private set; } // add getter to the end of the line
 }

@@ -19,6 +19,7 @@ public class PlayerBehavior : MonoBehaviour
     public String imputedNumber;
     public int convertedNumber;
     public bool forceSelectMode = false;
+    public static bool projectileLaunched = false;
     public int force;
     public float selection {
         get{
@@ -59,6 +60,7 @@ public class PlayerBehavior : MonoBehaviour
     }
     public void Launch(){
         forceSelectMode = false;
+        projectileLaunched = true;
         //MainCamera.SetActive(false);
         MainCamera.GetComponent<ProjectileFollower>().enabled = true;
         Instantiate(throws[RoundedAnswer], spawnPosition, throws[RoundedAnswer].transform.rotation);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System.IO;
+using TMPro;
 
 public class HighscoreTracker : MonoBehaviour
 {
@@ -11,12 +12,12 @@ public class HighscoreTracker : MonoBehaviour
 
     public String PlayerName;
     public float Score;
-    public GameObject Projectile;
+    public String Projectile;
     public int ProjectileForce;
 
     public String HighscoreName;
     public float Highscore;
-    public GameObject HighscoreProjectile;
+    public String HighscoreProjectile;
     public int HighscoreProjectileForce;
 
     //private float newScore;/////
@@ -37,7 +38,7 @@ public class HighscoreTracker : MonoBehaviour
     class SaveData{
         public String HighscoreName;
         public float Highscore;
-        public GameObject HighscoreProjectile;
+        public String HighscoreProjectile;
         public int HighscoreProjectileForce;   
     }
 
@@ -45,7 +46,7 @@ public class HighscoreTracker : MonoBehaviour
         SaveData data = new SaveData();
         data.HighscoreName = PlayerName;
         data.Highscore = newScore;/////
-        data.HighscoreProjectile = GameObject.FindWithTag("Projectile");/////
+        data.HighscoreProjectile = GameObject.Find("Object Selection").GetComponent<TextMeshProUGUI>().text;/////
         data.HighscoreProjectileForce = force;
 
         string json = JsonUtility.ToJson(data);

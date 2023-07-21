@@ -15,7 +15,7 @@ public class GameUIHandler : MonoBehaviour
 
     public String HighscoreName;
     public float Highscore;
-    public GameObject HighscoreProjectile;
+    public String HighscoreProjectile;
     public int HighscoreProjectileForce;
 
     

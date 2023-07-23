@@ -68,7 +68,7 @@ public class HighscoreTracker : MonoBehaviour
         }
         //Debug.Log("Loaded with this name selected: " + HighscoreName + ", and this highscore: " + Highscore);
     }
-
+    [ContextMenu("Rest Highscore")]
     public void ResetHighscore(){
         SaveData data = new SaveData();
         data.HighscoreName = " ";

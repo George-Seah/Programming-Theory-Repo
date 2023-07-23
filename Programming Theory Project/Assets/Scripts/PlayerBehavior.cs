@@ -21,6 +21,7 @@ public class PlayerBehavior : MonoBehaviour
     public bool forceSelectMode = false;
     public static bool projectileLaunched = false;
     public int force;
+    //ENCAPCULATION
     public float selection {
         get{
             return m_selection;
@@ -87,7 +88,9 @@ public class PlayerBehavior : MonoBehaviour
         }
         */
         selection += Time.deltaTime * horizontalInput;
-
+        if(force > 100){
+            force = 100;
+        }
         if(Input.GetKeyDown(KeyCode.Space) && !forceSelectMode){
             ActivateForceSelect();
         }

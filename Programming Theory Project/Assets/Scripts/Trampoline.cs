@@ -52,7 +52,7 @@ public class Trampoline : MonoBehaviour
             speed *= -1;
         }
     }
-    public void Move(){
+    public virtual void Move(){
         transform.position += new Vector3(0, 0, speed * Time.deltaTime);
     }
     // Start is called before the first frame update
@@ -61,6 +61,8 @@ public class Trampoline : MonoBehaviour
         coll = GetComponent<Collider>();
         bounciness = 0.5f;
         startZ = transform.position.z;
+        //Error throwers
+        MaxValueCheckers();
     }
 
     // Update is called once per frame
@@ -70,8 +72,7 @@ public class Trampoline : MonoBehaviour
         coll.material.staticFriction = statFriction;
         coll.material.bounciness = bounciness;
 
-        //Error throwers
-        MaxValueCheckers();
+
         //Barrier functions
         Barriers();
         //Trampoline mover function

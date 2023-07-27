@@ -1,13 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// INHERITANCE
 public class UltraTrampoline : Trampoline
 {
+
+
+    //POLYMORPHISM
+    void Awake()
+    {
+        bounciness = 1f;
+        speed = 5f;
+    }
     public UltraTrampoline()
     {
         Debug.Log("1st UltraTrampoline Constructor Called");
     }
+    // POLYMORPHISM
+    public override void Move(){
+        //float speed = 15f;
+        //float bounciness = 1f;
+        Debug.Log("speed and bounciness of Ultra Trampoline should be different.");
+        base.Move();
+        //transform.position += new Vector3(0, 0, speed * Time.deltaTime);
+    }
+    
     /*
     public UltraTrampoline(string newColor) : base(newColor)
     {
@@ -17,15 +35,6 @@ public class UltraTrampoline : Trampoline
         Debug.Log("2nd Apple Constructor Called");
     }
     */
-    // Start is called before the first frame update
-    void Awake()
-    {
-        bounciness = 1f;   
-    }
-
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

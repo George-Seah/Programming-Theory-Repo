@@ -40,7 +40,7 @@ public class PlayerBehavior : MonoBehaviour
     }
     [SerializeField] int RoundedAnswer;
     public GameObject MainCamera;
-
+    // ABSTRACTION
     public void InputFieldUpdated(){
         imputedNumber = ForceInputField.GetComponent<TMP_InputField>().text;
         Debug.Log(imputedNumber);

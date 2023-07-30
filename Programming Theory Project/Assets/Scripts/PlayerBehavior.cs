@@ -13,7 +13,7 @@ public class PlayerBehavior : MonoBehaviour
     //public int selection;
     public float horizontalInput;
     //[SerializeField] private int m_selection = 1;
-    public float m_selection = 0;
+    private float m_selection = 0;
     public Vector3 spawnPosition;
     public GameObject ForceInputField;
     public String imputedNumber;
@@ -28,10 +28,10 @@ public class PlayerBehavior : MonoBehaviour
         }
         set{
             if(value > 4){
-                value = 0;
+                m_selection = 0;
             }
             else if(value < 0){
-                value = 4;
+                m_selection = 4;
             }
             else{
                 m_selection = value;

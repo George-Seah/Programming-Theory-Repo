@@ -29,7 +29,7 @@ public class HighscoreTracker : MonoBehaviour
         }
 
         
-        //Instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
         LoadName();
     }

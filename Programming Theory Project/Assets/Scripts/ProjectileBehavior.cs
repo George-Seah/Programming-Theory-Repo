@@ -21,6 +21,7 @@ public class ProjectileBehavior : MonoBehaviour
     private GameObject HighscoreTracker;
     [SerializeField] private float Score;
 
+    private bool distanceChangeable = true;
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.CompareTag("Ground")){
             grounded = true;
@@ -49,7 +50,7 @@ public class ProjectileBehavior : MonoBehaviour
     void Update()
     {
         
-        if(!grounded){
+        if(distanceChangeable){
             distanceTravelled.GetComponent<TextMeshProUGUI>().text = $"Distance travelled: {transform.position.z}";
             Canvas.GetComponent<GameUIHandler>().Score = transform.position.z;
             
@@ -60,6 +61,9 @@ public class ProjectileBehavior : MonoBehaviour
                 HighscoreTracker.GetComponent<HighscoreTracker>().SaveName(Score, zForce);
             }
             
+        }
+        if(grounded || transform.position.y < 0){
+            distanceChangeable = false;
         }
         
     }

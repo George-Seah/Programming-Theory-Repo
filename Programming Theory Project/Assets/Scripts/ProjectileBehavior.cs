@@ -21,7 +21,7 @@ public class ProjectileBehavior : MonoBehaviour
     private GameObject HighscoreTracker;
     [SerializeField] private float Score;
 
-    private bool distanceChangeable = true;
+    public static bool distanceChangeable = true;
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.CompareTag("Ground")){
             grounded = true;

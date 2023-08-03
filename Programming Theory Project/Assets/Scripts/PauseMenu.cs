@@ -8,7 +8,13 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject gameOverMenuUI;
 
+    void Start(){
+        gameOverMenuUI.SetActive(false);
+        ProjectileBehavior.distanceChangeable = true;
+        PlayerBehavior.projectileLaunched = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +25,13 @@ public class PauseMenu : MonoBehaviour
             else{
                 Pause();
             }
+        }
+        //(ProjectileBehavior.distanceChangeable == null) && PlayerBehavior.projectileLaunched
+        if(PlayerBehavior.projectileLaunched && !ProjectileBehavior.distanceChangeable){
+            gameOverMenuUI.SetActive(true);
+        }
+        else{
+            gameOverMenuUI.SetActive(false);
         }
     }
     public void Resume(){
@@ -38,5 +51,12 @@ public class PauseMenu : MonoBehaviour
     public void Quit(){
         Debug.Log("Quit Button was pressed");
         Application.Quit();
+    }
+    public void Restart(){
+        Debug.Log($"Restart Button was pressed and distanceChangeable is {ProjectileBehavior.distanceChangeable}");
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ProjectileBehavior.distanceChangeable = true;
+        PlayerBehavior.projectileLaunched = false;
     }
 }

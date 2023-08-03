@@ -70,16 +70,20 @@ public class HighscoreTracker : MonoBehaviour
     }
     [ContextMenu("Rest Highscore")]
     public void ResetHighscore(){
+        Debug.Log("Saved highscore with this name: " + HighscoreName + ", and this highscore: " + Highscore);
         SaveData data = new SaveData();
         data.HighscoreName = " ";
         data.Highscore = 0;/////
         data.HighscoreProjectile = null;/////
         data.HighscoreProjectileForce = 0;
-
+        HighscoreName = " ";
+        Highscore = 0;/////
+        HighscoreProjectile = null;/////
+        HighscoreProjectileForce = 0;
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-        Debug.Log("Saved highscore with this name: " + HighscoreName + ", and this highscore: " + Highscore);
+        
     }
     public static HighscoreTracker Instance { get; private set; } // add getter to the end of the line
 }

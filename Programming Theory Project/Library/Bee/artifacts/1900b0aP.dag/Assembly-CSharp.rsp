@@ -306,7 +306,6 @@
 "Assets/Scripts/HighscoreTracker.cs"
 "Assets/Scripts/MenuUIHandler.cs"
 "Assets/Scripts/ObjectSelection.cs"
-"Assets/Scripts/PauseMenu.cs"
 "Assets/Scripts/PlayerBehavior.cs"
 "Assets/Scripts/ProjectileBehavior.cs"
 "Assets/Scripts/ProjectileFollower.cs"

@@ -17,6 +17,7 @@ public class PlayerBehavior : MonoBehaviour
     public Vector3 spawnPosition;
     public GameObject ForceInputField;
     public String imputedNumber;
+    public TextMeshProUGUI guideText;
     public int convertedNumber;
     public bool forceSelectMode = false;
     public static bool projectileLaunched = false;
@@ -102,9 +103,19 @@ public class PlayerBehavior : MonoBehaviour
         }
         if(forceSelectMode){
             ForceInputField.SetActive(true);
+            if(!projectileLaunched){
+                guideText.text = "Input a number between 0 and 101. Imputting anything more than 100 will result in the value being 100.";
+            }
+            
         }
         else{
-            ForceInputField.SetActive(false);        
+            ForceInputField.SetActive(false);
+            if(projectileLaunched){
+                guideText.text = "Projectile is launched!";
+            }
+        }
+        if(!forceSelectMode && !projectileLaunched){
+            guideText.text = "Use A and D or the left and right arrow keys to select your projectile. Then use SPACE to open the launch speed field.";
         }
         /*
 

@@ -49,6 +49,11 @@ public class HighscoreTracker : MonoBehaviour
         data.HighscoreProjectile = GameObject.Find("Object Selection").GetComponent<TextMeshProUGUI>().text;/////
         data.HighscoreProjectileForce = force;
 
+        HighscoreName = PlayerName;
+        Highscore = newScore;/////
+        HighscoreProjectile = GameObject.Find("Object Selection").GetComponent<TextMeshProUGUI>().text;/////
+        HighscoreProjectileForce = force;
+
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);

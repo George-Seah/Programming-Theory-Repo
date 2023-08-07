@@ -64,6 +64,7 @@ public class ProjectileBehavior : MonoBehaviour
         }
         if(grounded || transform.position.y < 0){
             distanceChangeable = false;
+            Rb.velocity = new Vector3(0, 0, 0);
         }
         
     }

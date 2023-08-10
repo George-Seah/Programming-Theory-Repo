@@ -1774,8 +1774,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1194948279}
-        m_TargetAssemblyTypeName: HighscoreTracker, Assembly-CSharp
+      - m_Target: {fileID: 557272499}
+        m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
         m_MethodName: ResetHighscore
         m_Mode: 1
         m_Arguments:

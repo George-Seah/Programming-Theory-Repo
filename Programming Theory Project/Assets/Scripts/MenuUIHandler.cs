@@ -40,6 +40,9 @@ public class MenuUIHandler : MonoBehaviour
                 Application.Quit(); // original code to quit Unity player
         #endif
     }
+    public void ResetHighscore(){
+        HighscoreTracker.Instance.ResetHighscore();
+    }
 }
 /*
 using System;

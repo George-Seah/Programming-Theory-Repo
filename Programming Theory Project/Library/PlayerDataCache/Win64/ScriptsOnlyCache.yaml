@@ -79,7 +79,7 @@ ScriptsOnlyBuild:
     fullTypeName: MenuUIHandler
     methodName: NameChanged
   - assembly: Assembly-CSharp
-    fullTypeName: HighscoreTracker
+    fullTypeName: MenuUIHandler
     methodName: ResetHighscore
   - assembly: Assembly-CSharp
     fullTypeName: MenuUIHandler
